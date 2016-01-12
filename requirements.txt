@@ -1,0 +1,5 @@
+django
+django-bootstrap-form
+
+## when using manage.py runserver, this loads .env automatically ##
+python-dotenv==0.3.0

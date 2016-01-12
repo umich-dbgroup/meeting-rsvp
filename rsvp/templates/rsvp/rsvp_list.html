@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+  <h1>
+    RSVPs for {{ event.name }} ({{ event.date }})
+    <small>({{ object_list|length }} RSVPs)</small>
+  </h1>
+
+  <ul class="list-group">
+  {% for r in object_list %}
+      <li class="list-group-item">
+        {{ r.name }} (vegetarian: {{ r.vegetarian|yesno }})
+      </li>
+  {% empty %}
+      <li class="list-group-item">No events yet.</li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}

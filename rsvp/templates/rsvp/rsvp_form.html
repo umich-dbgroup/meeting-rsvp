@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+{% load bootstrap %}
+
+{% block content %}
+  <h1>Rsvp for {{ event.name }} ({{ event.date }})</h1>
+
+  <form class="form-horizontal" method="POST" action="">
+    {% csrf_token %}
+    {{ form|bootstrap_horizontal }}
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <button type="submit" class="btn btn-primary">RSVP</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}
