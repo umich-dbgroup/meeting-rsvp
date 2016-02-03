@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', EventListView.as_view(), name='events'),
+    url(r'^rsvps/$', EventListView.as_view(), name='rsvps'),
+    
     url(r'^rsvp/(?P<event_id>\d+)/$', RsvpCreateView.as_view(), name='rsvp'),
     url(r'^rsvps/(?P<event_id>\d+)/$', RsvpListView.as_view(), name='rsvps'),
 ]

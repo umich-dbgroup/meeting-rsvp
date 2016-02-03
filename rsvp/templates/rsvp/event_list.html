@@ -3,10 +3,27 @@
 {% load static from staticfiles %}
 
 {% block content %}
-  <h1>Upcoming Events</h1>
+  <h2>Upcoming Events</h2>
 
   <ul class="list-group">
   {% for e in object_list %}
+      <li class="list-group-item">
+        <a href="{% url 'rsvp' e.id %}">{{ e.name }} -- {{ e.date }}</a>
+
+        {% if request.user.is_authenticated %}
+          (<a href="{% url 'rsvps' e.id %}">RSVPs</a>)
+        {% endif %}
+      </li>
+  {% empty %}
+      <li class="list-group-item">No events yet.</li>
+  {% endfor %}
+  </ul>
+
+
+  <h2>Past Events</h2>
+
+  <ul class="list-group">
+  {% for e in past_events %}
       <li class="list-group-item">
         <a href="{% url 'rsvp' e.id %}">{{ e.name }} -- {{ e.date }}</a>
 

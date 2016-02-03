@@ -12,8 +12,15 @@ from rsvp.models import Event, Rsvp
 class EventListView(ListView):
     model = Event
     def get_queryset(self, **kwargs):
-        return Event.objects.order_by('-date', 'name')
-        # .filter(date__gte=dt.datetime.today())
+        return Event.objects.order_by('-date', 'name')\
+                            .filter(date__gte=dt.datetime.today())
+
+    def get_context_data(self, **kwargs):
+        ctx = super(EventListView, self).get_context_data(**kwargs)
+        past_events = Event.objects.order_by('-date', 'name')\
+                                   .filter(date__lt=dt.datetime.today())
+        ctx['past_events'] = past_events
+        return ctx
 
 class RsvpCreateView(CreateView):
     model = Rsvp
